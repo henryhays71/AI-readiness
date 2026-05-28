@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal AI Readiness Assessment — Henry Hays Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --navy:#1B2A4A;
+  --navy-deep:#111c30;
+  --gold:#C9A84C;
+  --gold-light:#F5EDD6;
+  --gold-pale:#fdf9f0;
+  --cream:#FAF7F2;
+  --warm-white:#FFFDF9;
+  --text:#1a1a18;
+  --text-muted:#5a5a54;
+  --text-light:#9a9a90;
+  --border:#e8e4dc;
+  --border-warm:#d4cfc5;
+}
+
+html{scroll-behavior:smooth;font-size:16px}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  background:var(--cream);
+  color:var(--text);
+  min-height:100vh;
+  line-height:1.6;
+}
+
+/* ── HEADER ── */
+.site-header{
+  background:var(--navy);
+  padding:0;
+  position:relative;
+  overflow:hidden;
+}
+.site-header::before{
+  content:'';
+  position:absolute;
+  top:-120px;right:-80px;
+  width:420px;height:420px;
+  background:var(--gold);
+  opacity:0.05;
+  border-radius:50%;
+  pointer-events:none;
+}
+.header-inner{
+  max-width:780px;
+  margin:0 auto;
+  padding:52px 32px 44px;
+  position:relative;
+  z-index:1;
+}
+.brand-lockup{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:36px;
+}
+.brand-bar{
+  width:3px;
+  height:44px;
+  background:var(--gold);
+  border-radius:2px;
+  flex-shrink:0;
+}
+.brand-text-top{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.45);
+  line-height:1;
+  margin-bottom:5px;
+}
+.brand-text-main{
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;
+  font-weight:500;
+  color:rgba(255,255,255,0.85);
+  letter-spacing:0.04em;
+  line-height:1;
+}
+.header-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:16px;
+}
+.header-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,5vw,50px);
+  font-weight:500;
+  color:#fff;
+  line-height:1.08;
+  margin-bottom:20px;
+  letter-spacing:-0.01em;
+}
+.header-title em{
+  font-style:italic;
+  color:var(--gold);
+}
+.header-sub{
+  font-size:16px;
+  color:rgba(255,255,255,0.6);
+  font-weight:300;
+  max-width:520px;
+  line-height:1.65;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{
+  background:rgba(255,255,255,0.06);
+  padding:18px 32px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:none;
+}
+.progress-wrap.visible{display:block}
+.progress-inner{max-width:780px;margin:0 auto}
+.progress-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+}
+.progress-label{
+  font-size:12px;
+  color:rgba(255,255,255,0.4);
+  font-family:'DM Mono',monospace;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+}
+.progress-count{
+  font-size:12px;
+  color:rgba(255,255,255,0.5);
+  font-family:'DM Mono',monospace;
+}
+.progress-track{
+  height:2px;
+  background:rgba(255,255,255,0.1);
+  border-radius:2px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:var(--gold);
+  border-radius:2px;
+  transition:width 0.4s ease;
+}
+
+/* ── MAIN CONTENT ── */
+.main{
+  max-width:780px;
+  margin:0 auto;
+  padding:0 32px 80px;
+}
+
+/* ── INTRO SCREEN ── */
+.intro-screen{padding:52px 0 0}
+.intro-card{
+  background:var(--warm-white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:48px;
+  margin-bottom:24px;
+}
+.intro-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  font-weight:400;
+  font-style:italic;
+  color:var(--navy);
+  line-height:1.5;
+  padding-left:24px;
+  border-left:2px solid var(--gold);
+  margin-bottom:32px;
+}
+.intro-body p{
+  font-size:15px;
+  color:var(--text-muted);
+  line-height:1.75;
+  margin-bottom:14px;
+}
+.intro-body p:last-child{margin-bottom:0}
+.intro-body strong{font-weight:500;color:var(--text)}
+
+.dimensions-preview{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:12px;
+  margin:32px 0;
+}
+.dim-chip{
+  background:var(--gold-pale);
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:8px;
+  padding:12px 14px;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.dim-num{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--gold);
+  font-weight:500;
+  margin-top:2px;
+  flex-shrink:0;
+}
+.dim-name{
+  font-size:12px;
+  font-weight:500;
+  color:var(--navy);
+  line-height:1.4;
+}
+
+.start-wrap{margin-top:40px;text-align:center}
+.btn-start{
+  display:inline-block;
+  background:var(--navy);
+  color:#fff;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  font-weight:500;
+  letter-spacing:0.04em;
+  padding:16px 48px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  transition:background 0.2s, transform 0.15s;
+}
+.btn-start:hover{background:var(--navy-deep);transform:translateY(-1px)}
+.btn-start:active{transform:translateY(0)}
+.start-note{
+  margin-top:14px;
+  font-size:12px;
+  color:var(--text-light);
+  font-family:'DM Mono',monospace;
+  letter-spacing:0.08em;
+}
+
+/* ── INTAKE FORM ── */
+.intake-screen{display:none;padding:48px 0 0}
+.intake-screen.active{display:block}
+.intake-card{
+  background:var(--warm-white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:48px;
+}
+.intake-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;
+  font-weight:500;
+  color:var(--navy);
+  margin-bottom:8px;
+}
+.intake-sub{
+  font-size:14px;
+  color:var(--text-muted);
+  margin-bottom:36px;
+}
+.field-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-bottom:20px;
+}
+.field-row.single{grid-template-columns:1fr}
+.field-group{display:flex;flex-direction:column;gap:7px}
+.field-label{
+  font-size:12px;
+  font-weight:500;
+  color:var(--text-muted);
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+.field-input{
+  background:#fff;
+  border:1px solid var(--border-warm);
+  border-radius:8px;
+  padding:12px 16px;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  font-weight:300;
+  color:var(--text);
+  transition:border-color 0.2s;
+  outline:none;
+}
+.field-input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(27,42,74,0.07)}
+.field-select{
+  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a9a90' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") right 14px center no-repeat;
+  border:1px solid var(--border-warm);
+  border-radius:8px;
+  padding:12px 40px 12px 16px;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  font-weight:300;
+  color:var(--text);
+  appearance:none;
+  cursor:pointer;
+  transition:border-color 0.2s;
+  outline:none;
+  width:100%;
+}
+.field-select:focus{border-color:var(--navy)}
+.btn-continue{
+  margin-top:32px;
+  display:inline-block;
+  background:var(--navy);
+  color:#fff;
+  font-size:14px;
+  font-weight:500;
+  padding:14px 40px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  transition:background 0.2s, transform 0.15s;
+}
+.btn-continue:hover{background:var(--navy-deep);transform:translateY(-1px)}
+
+/* ── QUESTION SCREEN ── */
+.question-screen{display:none;padding:48px 0 0}
+.question-screen.active{display:block}
+.dim-header{
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.dim-badge{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--gold);
+  background:rgba(201,168,76,0.12);
+  padding:4px 10px;
+  border-radius:4px;
+}
+.q-number{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--text-light);
+  letter-spacing:0.1em;
+}
+.question-card{
+  background:var(--warm-white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:40px 48px;
+  margin-bottom:20px;
+}
+.question-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;
+  font-weight:500;
+  color:var(--navy);
+  line-height:1.35;
+  margin-bottom:10px;
+}
+.question-sub{
+  font-size:13px;
+  color:var(--text-light);
+  font-style:italic;
+  margin-bottom:32px;
+  line-height:1.5;
+}
+.options-grid{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.option-card{
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  padding:18px 22px;
+  cursor:pointer;
+  transition:border-color 0.18s, background 0.18s, transform 0.12s;
+  background:#fff;
+  position:relative;
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+}
+.option-card:hover{
+  border-color:rgba(27,42,74,0.35);
+  background:rgba(27,42,74,0.02);
+  transform:translateX(3px);
+}
+.option-card.selected{
+  border-color:var(--navy);
+  background:rgba(27,42,74,0.04);
+}
+.option-indicator{
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  border:1.5px solid var(--border-warm);
+  flex-shrink:0;
+  margin-top:2px;
+  transition:all 0.18s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.option-card.selected .option-indicator{
+  background:var(--navy);
+  border-color:var(--navy);
+}
+.option-card.selected .option-indicator::after{
+  content:'';
+  width:6px;
+  height:6px;
+  background:#fff;
+  border-radius:50%;
+}
+.option-content{}
+.option-label{
+  font-size:14px;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:4px;
+  line-height:1.4;
+}
+.option-desc{
+  font-size:12px;
+  color:var(--text-light);
+  line-height:1.5;
+}
+.option-card.selected .option-label{color:var(--navy)}
+
+.nav-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:8px;
+}
+.btn-prev{
+  background:transparent;
+  border:1px solid var(--border-warm);
+  border-radius:8px;
+  padding:11px 24px;
+  font-size:13px;
+  color:var(--text-muted);
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  transition:all 0.15s;
+}
+.btn-prev:hover{border-color:var(--navy);color:var(--navy)}
+.btn-next{
+  background:var(--navy);
+  border:none;
+  border-radius:8px;
+  padding:12px 32px;
+  font-size:13px;
+  font-weight:500;
+  color:#fff;
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  transition:all 0.15s;
+  letter-spacing:0.03em;
+}
+.btn-next:hover{background:var(--navy-deep)}
+.btn-next:disabled{opacity:0.35;cursor:not-allowed}
+
+/* ── LOADING SCREEN ── */
+.loading-screen{display:none;padding:100px 0;text-align:center}
+.loading-screen.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.loading-ring{
+  width:56px;height:56px;
+  border:2px solid var(--border);
+  border-top-color:var(--gold);
+  border-radius:50%;
+  animation:spin 0.9s linear infinite;
+  margin-bottom:28px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;
+  font-weight:500;
+  color:var(--navy);
+  margin-bottom:10px;
+}
+.loading-sub{
+  font-size:14px;
+  color:var(--text-light);
+  max-width:340px;
+  line-height:1.6;
+}
+.loading-dots span{
+  display:inline-block;
+  width:6px;height:6px;
+  background:var(--gold);
+  border-radius:50%;
+  margin:0 3px;
+  animation:dot-bounce 1.2s ease-in-out infinite;
+}
+.loading-dots span:nth-child(2){animation-delay:0.2s}
+.loading-dots span:nth-child(3){animation-delay:0.4s}
+@keyframes dot-bounce{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
+
+/* ── RESULT SCREEN ── */
+.result-screen{display:none;padding:48px 0 0}
+.result-screen.active{display:block}
+
+.result-hero{
+  background:var(--navy);
+  border-radius:16px;
+  padding:44px 48px;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+}
+.result-hero::before{
+  content:'';
+  position:absolute;
+  top:-80px;right:-60px;
+  width:300px;height:300px;
+  background:var(--gold);
+  opacity:0.06;
+  border-radius:50%;
+  pointer-events:none;
+}
+.result-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.4);
+  margin-bottom:12px;
+}
+.result-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,4vw,40px);
+  font-weight:500;
+  color:#fff;
+  margin-bottom:6px;
+  line-height:1.1;
+}
+.result-archetype{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  font-weight:400;
+  font-style:italic;
+  color:var(--gold);
+  margin-bottom:28px;
+}
+.score-strip{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:32px;
+}
+.score-box{
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;
+  padding:16px 22px;
+  min-width:130px;
+}
+.score-box-label{
+  font-size:11px;
+  color:rgba(255,255,255,0.4);
+  font-family:'DM Mono',monospace;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.score-box-val{
+  font-family:'DM Sans',sans-serif;
+  font-size:26px;
+  font-weight:600;
+  color:#fff;
+}
+.score-box-val span{font-size:14px;font-weight:300;color:rgba(255,255,255,0.5);margin-left:2px}
+.score-box.gold-box .score-box-val{color:var(--gold)}
+
+.result-summary-text{
+  font-size:15px;
+  color:rgba(255,255,255,0.7);
+  line-height:1.75;
+  max-width:580px;
+}
+
+/* dim scores */
+.dim-scores-section{
+  background:var(--warm-white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:36px 48px;
+  margin-bottom:20px;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;
+  font-weight:500;
+  color:var(--navy);
+  margin-bottom:28px;
+}
+.dim-row{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:18px;
+}
+.dim-row-label{
+  font-size:13px;
+  font-weight:400;
+  color:var(--text);
+  min-width:180px;
+  flex-shrink:0;
+}
+.dim-track{
+  flex:1;
+  height:6px;
+  background:var(--border);
+  border-radius:3px;
+  overflow:hidden;
+}
+.dim-fill{
+  height:100%;
+  background:var(--navy);
+  border-radius:3px;
+  transition:width 1s cubic-bezier(.16,1,.3,1);
+  width:0;
+}
+.dim-fill.high{background:var(--gold)}
+.dim-score-label{
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  color:var(--text-muted);
+  min-width:32px;
+  text-align:right;
+}
+
+/* next steps */
+.steps-section{
+  background:var(--warm-white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:36px 48px;
+  margin-bottom:20px;
+}
+.step-item{
+  display:flex;
+  gap:20px;
+  padding:20px 0;
+  border-bottom:1px solid var(--border);
+}
+.step-item:last-child{border-bottom:none}
+.step-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  font-weight:400;
+  color:var(--gold);
+  line-height:1;
+  flex-shrink:0;
+  width:32px;
+  text-align:center;
+}
+.step-content{}
+.step-title{
+  font-size:14px;
+  font-weight:500;
+  color:var(--navy);
+  margin-bottom:4px;
+}
+.step-body{
+  font-size:13px;
+  color:var(--text-muted);
+  line-height:1.65;
+}
+
+/* closing callout */
+.callout-card{
+  background:var(--gold-pale);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:16px;
+  padding:36px 48px;
+  margin-bottom:40px;
+}
+.callout-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  font-weight:400;
+  font-style:italic;
+  color:var(--navy);
+  line-height:1.5;
+  padding-left:24px;
+  border-left:2px solid var(--gold);
+}
+
+.hhc-footer{
+  text-align:center;
+  padding:32px 0;
+  border-top:1px solid var(--border);
+}
+.hhc-footer-brand{
+  font-size:12px;
+  font-family:'DM Mono',monospace;
+  color:var(--text-light);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.hhc-footer-sub{
+  font-size:11px;
+  color:var(--text-light);
+  opacity:0.6;
+}
+
+/* Error state */
+.error-box{
+  background:#fff5f5;
+  border:1px solid #ffd0d0;
+  border-radius:8px;
+  padding:16px 20px;
+  font-size:13px;
+  color:#c0392b;
+  margin-top:20px;
+  display:none;
+}
+
+@media(max-width:600px){
+  .header-inner,.main{padding-left:20px;padding-right:20px}
+  .intro-card,.question-card,.intake-card,.result-hero,.dim-scores-section,.steps-section,.callout-card{padding:28px 24px}
+  .dimensions-preview{grid-template-columns:1fr 1fr}
+  .field-row{grid-template-columns:1fr}
+  .score-strip{gap:12px}
+  .dim-row-label{min-width:130px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-lockup">
+      <div class="brand-bar"></div>
+      <div>
+        <div class="brand-text-top">LSU Applied Intelligence Lab</div>
+        <div class="brand-text-main">Henry Hays Consulting</div>
+      </div>
+    </div>
+    <div class="header-eyebrow">Personal AI Readiness</div>
+    <h1 class="header-title">You've used AI.<br><em>Now use it well.</em></h1>
+    <p class="header-sub">Six dimensions. Twenty-four questions. A personal read on where you are — and exactly what comes next.</p>
+  </div>
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-inner">
+      <div class="progress-meta">
+        <span class="progress-label">Assessment Progress</span>
+        <span class="progress-count" id="progressCount">0 of 24</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- INTRO SCREEN -->
+  <section class="intro-screen" id="introScreen">
+    <div class="intro-card">
+      <p class="intro-quote">"Most people using AI are doing the same thing over and over. Getting emails rewritten. Running quick searches. They haven't even scratched the surface of what this tool can do for their career."</p>
+      <div class="intro-body">
+        <p>You've been in that seat. You opened ChatGPT or Claude, got something useful, and thought — <strong>there has to be more than this.</strong></p>
+        <p>There is. Most people using AI are one or two moves away from a completely different level of output, speed, and impact. The problem isn't access. It's not knowing what the next move looks like.</p>
+        <p>This assessment will tell you. Honestly. In plain language. No fluff, no buzzwords — just a clear read on where you are and what to build next.</p>
+      </div>
+      <div class="dimensions-preview">
+        <div class="dim-chip"><span class="dim-num">01</span><span class="dim-name">Current Habit Depth</span></div>
+        <div class="dim-chip"><span class="dim-num">02</span><span class="dim-name">Prompt Craft</span></div>
+        <div class="dim-chip"><span class="dim-num">03</span><span class="dim-name">Workflow Integration</span></div>
+        <div class="dim-chip"><span class="dim-num">04</span><span class="dim-name">Learning Posture</span></div>
+        <div class="dim-chip"><span class="dim-num">05</span><span class="dim-name">Output Ownership</span></div>
+        <div class="dim-chip"><span class="dim-num">06</span><span class="dim-name">Next Move Clarity</span></div>
+      </div>
+      <div class="start-wrap">
+        <button class="btn-start" onclick="showIntake()">Take the Assessment</button>
+        <div class="start-note">Takes about 6 minutes &nbsp;·&nbsp; 24 questions &nbsp;·&nbsp; Instant results</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTAKE FORM -->
+  <section class="intake-screen" id="intakeScreen">
+    <div class="intake-card">
+      <h2 class="intake-title">Before we begin</h2>
+      <p class="intake-sub">A few quick details so your results feel personal — because they should be.</p>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">First Name</label>
+          <input class="field-input" type="text" id="firstName" placeholder="Your first name">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Last Name</label>
+          <input class="field-input" type="text" id="lastName" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Company / Organization</label>
+          <input class="field-input" type="text" id="company" placeholder="Where you work">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Your Role / Title</label>
+          <input class="field-input" type="text" id="jobTitle" placeholder="What you do">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Industry</label>
+          <select class="field-select" id="industry">
+            <option value="">Select your industry</option>
+            <option>Energy / Oil & Gas</option>
+            <option>Industrial Construction</option>
+            <option>Healthcare</option>
+            <option>Consumer Packaged Goods</option>
+            <option>Logistics / Distribution</option>
+            <option>Financial Services / Banking</option>
+            <option>Real Estate</option>
+            <option>Hospitality / Food & Beverage</option>
+            <option>Agriculture</option>
+            <option>Professional Services</option>
+            <option>Manufacturing</option>
+            <option>Technology</option>
+            <option>Government / Education</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">How often do you currently use AI?</label>
+          <select class="field-select" id="frequency">
+            <option value="">Select frequency</option>
+            <option>Daily — it's part of my routine</option>
+            <option>A few times a week</option>
+            <option>Once a week or so</option>
+            <option>Occasionally, when I think of it</option>
+            <option>Rarely — mostly just tried it</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label">Email Address (for your results)</label>
+          <input class="field-input" type="email" id="emailAddr" placeholder="Where should we send your full report?">
+        </div>
+      </div>
+      <button class="btn-continue" onclick="startAssessment()">Start Assessment →</button>
+      <div class="error-box" id="intakeError">Please fill in your name, role, and industry before continuing.</div>
+    </div>
+  </section>
+
+  <!-- QUESTION SCREEN -->
+  <section class="question-screen" id="questionScreen">
+    <div class="dim-header">
+      <span class="dim-badge" id="dimBadge">Dimension 1</span>
+      <span class="q-number" id="qNumber">Q1 of 24</span>
+    </div>
+    <div class="question-card">
+      <p class="question-text" id="questionText"></p>
+      <p class="question-sub" id="questionSub"></p>
+      <div class="options-grid" id="optionsGrid"></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-prev" id="btnPrev" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" id="btnNext" onclick="nextQuestion()" disabled>Continue →</button>
+    </div>
+  </section>
+
+  <!-- LOADING SCREEN -->
+  <section class="loading-screen" id="loadingScreen">
+    <div class="loading-ring"></div>
+    <div class="loading-title">Reading your results...</div>
+    <div class="loading-sub">Building your personal AI profile. This takes about 15 seconds.</div>
+    <div class="loading-dots" style="margin-top:20px"><span></span><span></span><span></span></div>
+  </section>
+
+  <!-- RESULT SCREEN -->
+  <section class="result-screen" id="resultScreen">
+    <div class="result-hero">
+      <div class="result-eyebrow">Your Personal AI Readiness Report</div>
+      <div class="result-name" id="resultName"></div>
+      <div class="result-archetype" id="resultArchetype"></div>
+      <div class="score-strip">
+        <div class="score-box"><div class="score-box-label">Overall Score</div><div class="score-box-val" id="resultScore">—<span>/ 100</span></div></div>
+        <div class="score-box gold-box"><div class="score-box-label">Readiness Stage</div><div class="score-box-val" id="resultStage" style="font-size:17px;line-height:1.2">—</div></div>
+        <div class="score-box"><div class="score-box-label">Strongest Dimension</div><div class="score-box-val" id="resultStrong" style="font-size:15px;line-height:1.3">—</div></div>
+      </div>
+      <div class="result-summary-text" id="resultSummary"></div>
+    </div>
+
+    <div class="dim-scores-section">
+      <h3 class="section-title">Your Six-Dimension Breakdown</h3>
+      <div id="dimBarsContainer"></div>
+    </div>
+
+    <div class="steps-section">
+      <h3 class="section-title">Your Three Next Moves</h3>
+      <div id="stepsContainer"></div>
+    </div>
+
+    <div class="callout-card">
+      <p class="callout-quote" id="closingQuote"></p>
+    </div>
+
+    <div class="hhc-footer">
+      <div class="hhc-footer-brand">Henry Hays Consulting · LSU Applied Intelligence Lab</div>
+      <div class="hhc-footer-sub">Baton Rouge, Louisiana · henryhaysconsulting.com</div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const QUESTIONS = [
+  {dim:1,dimName:"Current Habit Depth",text:"When you sit down to work, where does AI fit in?",sub:"This reveals whether AI is a tool you reach for — or a tool that reaches back.",
+   options:[
+    {label:"It doesn't, really",desc:"I've tried it a few times but it's not part of my daily work",score:1},
+    {label:"I use it when I think of it",desc:"It shows up occasionally — usually for one specific thing like emails or quick lookups",score:2},
+    {label:"It's in my routine for a few specific tasks",desc:"I have 2-3 use cases where AI is genuinely part of how I work",score:3},
+    {label:"It's woven into most of my day",desc:"I'm opening it multiple times a day across different types of work",score:4}
+  ]},
+  {dim:1,dimName:"Current Habit Depth",text:"What types of tasks have you actually used AI for?",sub:"Breadth matters. A one-trick relationship with AI is still a starting point.",
+   options:[
+    {label:"Mostly writing — emails, messages, quick drafts",desc:"I use it to clean up or start written communication",score:1},
+    {label:"Writing plus some research or brainstorming",desc:"I've expanded a bit beyond pure writing tasks",score:2},
+    {label:"Writing, research, analysis, and some summarization",desc:"I'm getting value from multiple types of tasks",score:3},
+    {label:"All of the above plus strategy, planning, or problem-solving",desc:"AI is helping me think, not just write",score:4}
+  ]},
+  {dim:1,dimName:"Current Habit Depth",text:"When AI gives you a bad response, what do you do?",sub:"How you handle failure tells you everything about where your skill level is.",
+   options:[
+    {label:"Close the tab and move on",desc:"If it doesn't work the first time, I don't push it",score:1},
+    {label:"Try rephrasing once, then give up if it doesn't work",desc:"I'll make one adjustment but I don't know why it failed",score:2},
+    {label:"Diagnose what went wrong and try a different approach",desc:"I've learned enough to understand why responses go sideways",score:3},
+    {label:"Treat it as a signal to redesign my prompt entirely",desc:"A bad response is information — I use it to get better",score:4}
+  ]},
+  {dim:1,dimName:"Current Habit Depth",text:"What AI tools are you currently using?",sub:"Tool diversity signals that you're solving different problems, not just one.",
+   options:[
+    {label:"Just one — usually ChatGPT or whatever came up first",desc:"I landed on one tool and stuck with it",score:1},
+    {label:"One primary tool, I've heard of the others",desc:"I know Claude, Gemini, Perplexity exist but haven't really used them",score:2},
+    {label:"Two or three tools, depending on the task",desc:"I've figured out that different tools are better at different things",score:3},
+    {label:"Multiple tools used deliberately for specific jobs",desc:"I have a mental map of which tool is right for which kind of work",score:4}
+  ]},
+  {dim:2,dimName:"Prompt Craft",text:"When you write a prompt, what do you typically include?",sub:"The prompt is the contract. Most people write a headline and wonder why they get a press release.",
+   options:[
+    {label:"What I want it to do — one or two sentences",desc:"I give the task. I let AI figure out the rest.",score:1},
+    {label:"The task plus a little context about what I need",desc:"I'm starting to give it more to work with",score:2},
+    {label:"Task, context, format preference, and sometimes examples",desc:"I've learned that more specificity equals better output",score:3},
+    {label:"Role, context, task, format, constraints, and examples",desc:"I think of a prompt as a brief — not a request",score:4}
+  ]},
+  {dim:2,dimName:"Prompt Craft",text:"Have you ever given AI a persona or a specific voice to write in?",sub:"One of the most underused moves in prompt craft. Most people never try it.",
+   options:[
+    {label:"No — I didn't know you could do that",desc:"This is new to me",score:1},
+    {label:"I've tried it once or twice but didn't make it a habit",desc:"I experimented but didn't see a big enough difference to stick with it",score:2},
+    {label:"Yes — I regularly tell it to write in a specific tone or style",desc:"I know that 'write like a consultant' produces different output than 'write like a teacher'",score:3},
+    {label:"Yes — I've written detailed style guides or saved personas I reuse",desc:"I've built reusable voice frameworks that make every output consistent",score:4}
+  ]},
+  {dim:2,dimName:"Prompt Craft",text:"How often do you use the output from AI exactly as it comes back?",sub:"Raw AI output is a first draft. Always.",
+   options:[
+    {label:"Most of the time — I copy and paste directly",desc:"It's good enough to use without changes",score:1},
+    {label:"I make light edits — fix a word or two",desc:"I clean it up but don't really rewrite it",score:2},
+    {label:"I treat it as a starting draft and rewrite meaningfully",desc:"The AI gets me to 60% and I take it the rest of the way",score:3},
+    {label:"I use it as one input among several and synthesize my own version",desc:"AI output is raw material — not finished work",score:4}
+  ]},
+  {dim:2,dimName:"Prompt Craft",text:"Have you ever asked AI to critique your own work?",sub:"Using AI as an editor — not just a writer — is a different skill set entirely.",
+   options:[
+    {label:"No — I hadn't thought of using it that way",desc:"I use it to produce things, not evaluate them",score:1},
+    {label:"I've done it once or twice, more as an experiment",desc:"I tried it but haven't made it a regular move",score:2},
+    {label:"Yes — I regularly ask it to punch holes in my arguments or drafts",desc:"I use AI adversarially to make my work stronger",score:3},
+    {label:"Yes — I've built specific review frameworks I run my work through",desc:"I have a structured critique process that uses AI as a demanding editor",score:4}
+  ]},
+  {dim:3,dimName:"Workflow Integration",text:"Where in your actual work process does AI show up?",sub:"The difference between a user and a practitioner is often just where in the workflow AI enters.",
+   options:[
+    {label:"Mostly after the work is done — polishing final output",desc:"AI is a finishing layer, not part of how I think through problems",score:1},
+    {label:"During execution — to speed up tasks I'm already doing",desc:"AI helps me do the same things faster",score:2},
+    {label:"During planning and execution",desc:"I'm bringing AI in early to help structure my approach, not just execute it",score:3},
+    {label:"Throughout — from problem framing to final delivery",desc:"AI is integrated into how I think about a problem from the first moment",score:4}
+  ]},
+  {dim:3,dimName:"Workflow Integration",text:"Have you ever built a repeatable AI process for a recurring task?",sub:"One-off prompts are a skill. Systems are a multiplier.",
+   options:[
+    {label:"No — I start from scratch every time",desc:"Each prompt is a new invention",score:1},
+    {label:"I have a few phrases I reuse but nothing formal",desc:"I copy and paste from memory sometimes",score:2},
+    {label:"Yes — I have saved prompts I run for specific recurring tasks",desc:"I've built small efficiencies I use repeatedly",score:3},
+    {label:"Yes — I have structured workflows with multiple prompts in sequence",desc:"I've designed multi-step processes where AI does predictable, consistent work",score:4}
+  ]},
+  {dim:3,dimName:"Workflow Integration",text:"Have you ever used AI to handle a task you previously did manually?",sub:"Displacement — not just augmentation — is where the real time savings live.",
+   options:[
+    {label:"Not really — AI supplements what I do, but I still do everything myself",desc:"It makes things faster, but the work is still mine to do end-to-end",score:1},
+    {label:"One or two things — small stuff",desc:"I've offloaded a few minor tasks",score:2},
+    {label:"Yes — a few meaningful tasks have moved off my plate entirely",desc:"There are things I used to do that AI now handles with minimal oversight",score:3},
+    {label:"Yes — and I've systematically mapped which tasks to displace",desc:"I've done an audit of my work and deliberately moved tasks to AI",score:4}
+  ]},
+  {dim:3,dimName:"Workflow Integration",text:"Do the people around you know how you're using AI at work?",sub:"Visibility matters. Most people are building in isolation when they should be building influence.",
+   options:[
+    {label:"No — I keep it pretty quiet",desc:"I don't talk about my AI use at work",score:1},
+    {label:"A few people know, but it's not something I discuss much",desc:"It's come up but I'm not making it part of my professional identity",score:2},
+    {label:"My immediate team knows — I've shared some things that have worked",desc:"I'm starting to be the go-to person for AI questions in my circle",score:3},
+    {label:"I'm actively teaching or influencing others in my organization",desc:"My AI use has made me visible as a resource, not just a user",score:4}
+  ]},
+  {dim:4,dimName:"Learning Posture",text:"How do you get better at using AI?",sub:"Most people's skill level is frozen at the day they started using it. That's a problem.",
+   options:[
+    {label:"I don't really think about it — I just use it",desc:"My approach hasn't changed much since I started",score:1},
+    {label:"I pick things up when something doesn't work",desc:"Frustration is my main teacher",score:2},
+    {label:"I occasionally read articles or watch videos about AI prompting",desc:"I make some deliberate effort to improve",score:3},
+    {label:"I have a regular practice — I try new things, track what works, and iterate",desc:"I treat AI skill as something I'm actively building, not just using",score:4}
+  ]},
+  {dim:4,dimName:"Learning Posture",text:"Have you ever tried using AI in a domain completely outside your job?",sub:"Cross-domain play is often where the real breakthroughs in understanding come from.",
+   options:[
+    {label:"No — I keep it pretty work-focused",desc:"I use it for professional tasks and that's about it",score:1},
+    {label:"Occasionally for personal things — travel planning, recipes, etc.",desc:"I dabble outside of work but nothing intentional",score:2},
+    {label:"Yes — I've used it for projects, side interests, or creative work",desc:"I've experimented in contexts that let me push the tool differently",score:3},
+    {label:"Yes — and those experiments have directly changed how I use it at work",desc:"Learning in one domain has made me better in others",score:4}
+  ]},
+  {dim:4,dimName:"Learning Posture",text:"When you see AI do something unexpected or impressive, what's your reaction?",sub:"Curiosity is the engine. Most people are passengers.",
+   options:[
+    {label:"I use the result and move on",desc:"I take the output and don't think much about how it happened",score:1},
+    {label:"I notice it but don't dig into it",desc:"I'm aware something interesting happened but I don't follow the thread",score:2},
+    {label:"I try to understand what prompt or structure caused it",desc:"I reverse-engineer success to repeat it",score:3},
+    {label:"I build it into a reusable pattern and share what I found",desc:"Discovery is the beginning of a system, not the end of a session",score:4}
+  ]},
+  {dim:4,dimName:"Learning Posture",text:"Have you ever deliberately limited yourself to AI-only for a task — no Googling, no asking a colleague?",sub:"Constraint is one of the fastest ways to build deep fluency.",
+   options:[
+    {label:"No — I mix tools however feels natural",desc:"I don't think in terms of deliberate practice",score:1},
+    {label:"I've done it by accident — couldn't access other tools in the moment",desc:"It happened but wasn't intentional",score:2},
+    {label:"Yes — occasionally as an experiment",desc:"I've tried it to see how far AI can take me on its own",score:3},
+    {label:"Yes — regularly, as a deliberate skill-building exercise",desc:"I use constraint intentionally to force depth",score:4}
+  ]},
+  {dim:5,dimName:"Output Ownership",text:"When AI writes something for you, do you feel like it's really yours?",sub:"Authenticity in the age of AI is a skill — not just a principle.",
+   options:[
+    {label:"Honestly, not really — it sounds like AI wrote it",desc:"I can tell when I read it back that it doesn't sound like me",score:1},
+    {label:"Sort of — I clean it up but the core is still AI's",desc:"My edits are more cosmetic than substantive",score:2},
+    {label:"Mostly yes — I rework it enough that it reflects how I think",desc:"I've got a clear editing process that puts my voice back in",score:3},
+    {label:"Yes — I use AI as a scaffold and build something genuinely mine on top of it",desc:"The AI is infrastructure. The thinking and voice are mine.",score:4}
+  ]},
+  {dim:5,dimName:"Output Ownership",text:"How often do you verify AI-generated facts before using them?",sub:"The AI that hallucinates confidently is everyone's problem. It's your name on the output.",
+   options:[
+    {label:"Rarely — I trust it pretty much as-is",desc:"I take the output at face value most of the time",score:1},
+    {label:"Sometimes — for high-stakes things",desc:"I check when the stakes feel high enough",score:2},
+    {label:"Often — I have a habit of spot-checking key facts",desc:"I've been burned before and built in a verification step",score:3},
+    {label:"Always — I treat AI output as a starting hypothesis that needs confirmation",desc:"Nothing from AI goes out without a verification step, regardless of how confident it sounds",score:4}
+  ]},
+  {dim:5,dimName:"Output Ownership",text:"Have you ever been caught using AI-generated content that turned out to be wrong?",sub:"This is a calibration question, not a judgment. Getting caught is how most people build verification habits.",
+   options:[
+    {label:"Yes — and it was embarrassing",desc:"It happened and I didn't have a good answer for it",score:1},
+    {label:"Almost — I caught something wrong before it went out",desc:"A near miss that changed how careful I am",score:2},
+    {label:"No — but I've found errors in my own review process and corrected them",desc:"My process catches things before they become problems",score:3},
+    {label:"No — I've built in enough verification that errors get caught before they're my errors",desc:"My review process is thorough enough that I own whatever goes out",score:4}
+  ]},
+  {dim:5,dimName:"Output Ownership",text:"When you use AI for something at work, do you disclose it?",sub:"The norms around this are still forming. Having a clear position puts you ahead of the conversation.",
+   options:[
+    {label:"No — and I'm a little uncomfortable about it",desc:"It feels like something I should address but haven't",score:1},
+    {label:"No — but I don't think it needs to be disclosed the way I'm using it",desc:"I've thought about it and decided it's not required for my use cases",score:2},
+    {label:"Sometimes — I mention it when it's relevant",desc:"I disclose situationally when it feels right or is expected",score:3},
+    {label:"Yes, and I've been transparent about my whole approach with my team or manager",desc:"I've made my AI use visible because visibility builds trust and influence",score:4}
+  ]},
+  {dim:6,dimName:"Next Move Clarity",text:"Do you have a clear sense of what you'd like to be using AI for that you're not using it for yet?",sub:"Having a picture of the gap is half the battle.",
+   options:[
+    {label:"Not really — I haven't thought that far ahead",desc:"I'm using it for what comes up; I haven't mapped where else I want to go",score:1},
+    {label:"Vaguely — I know there's more but I'm not sure what",desc:"I have a sense that I'm leaving something on the table but can't name it specifically",score:2},
+    {label:"Yes — I have 2-3 specific things I want to try",desc:"I have a list in my head of use cases I want to explore",score:3},
+    {label:"Yes — and I have a plan for how I'm going to build toward them",desc:"I've mapped the skills and use cases I'm working toward and I'm on a path",score:4}
+  ]},
+  {dim:6,dimName:"Next Move Clarity",text:"Has anyone at your organization challenged, questioned, or been surprised by your AI use?",sub:"Being ahead of the curve shows up in friction, not just results.",
+   options:[
+    {label:"No — I blend in completely",desc:"My AI use is invisible to the people around me",score:1},
+    {label:"A little — a few people have noticed or asked questions",desc:"My use is starting to get some attention but it's low-level",score:2},
+    {label:"Yes — people see me as an early mover and sometimes ask for help",desc:"My AI fluency is visible enough that it's shaping how people see me",score:3},
+    {label:"Yes — and I've used that visibility to drive real change in how my team operates",desc:"I'm not just ahead individually — I'm pulling people forward",score:4}
+  ]},
+  {dim:6,dimName:"Next Move Clarity",text:"If someone handed you 2 free hours and said 'go deeper with AI,' what would you do?",sub:"Your answer here reveals whether you're in reactive or intentional mode.",
+   options:[
+    {label:"Honestly, I'm not sure where I'd start",desc:"I wouldn't know how to make the most of the time",score:1},
+    {label:"I'd probably explore a few things and see what's useful",desc:"I'd tinker but without a specific goal in mind",score:2},
+    {label:"I have a specific project or skill I'd work on",desc:"I know exactly what I'd build or learn if I had the time",score:3},
+    {label:"I have a prioritized list ready — I'd pull from it and execute",desc:"Two free hours wouldn't be enough. I have a backlog waiting.",score:4}
+  ]},
+  {dim:6,dimName:"Next Move Clarity",text:"What do you imagine your relationship with AI looks like 12 months from now?",sub:"The people who answer this question clearly tend to be the ones who get there.",
+   options:[
+    {label:"Probably about the same as today",desc:"I don't have a strong sense of where it's heading",score:1},
+    {label:"A little better — more comfortable, fewer frustrations",desc:"I expect gradual improvement without a big shift",score:2},
+    {label:"Meaningfully different — more integrated, more capable",desc:"I expect AI to be a bigger part of how I work and how I'm perceived",score:3},
+    {label:"Fundamentally different — I'm building toward that vision intentionally",desc:"I have a specific picture of where I'm headed and I'm working toward it",score:4}
+  ]}
+];
+
+const ARCHETYPES = [
+  {min:0,max:39,name:"The Dabbler",tagline:"You've tasted it. Now it's time to eat.",stage:"Starting Line"},
+  {min:40,max:59,name:"The Curious Practitioner",tagline:"You're building instincts. A few habits away from real leverage.",stage:"Building Foundation"},
+  {min:60,max:75,name:"The Functional User",tagline:"AI is in your workflow. Now make it systematic.",stage:"Gaining Traction"},
+  {min:76,max:100,name:"The Systems Builder",tagline:"You're close to the level where this changes your career trajectory.",stage:"Compounding Returns"}
+];
+
+const DIM_NAMES = ["Current Habit Depth","Prompt Craft","Workflow Integration","Learning Posture","Output Ownership","Next Move Clarity"];
+
+let currentQ = 0;
+let answers = new Array(24).fill(null);
+let userData = {};
+let resultData = null;
+
+function showIntake(){
+  document.getElementById('introScreen').style.display='none';
+  document.getElementById('intakeScreen').classList.add('active');
+  document.getElementById('progressWrap').classList.add('visible');
+}
+
+function startAssessment(){
+  const first = document.getElementById('firstName').value.trim();
+  const last = document.getElementById('lastName').value.trim();
+  const company = document.getElementById('company').value.trim();
+  const title = document.getElementById('jobTitle').value.trim();
+  const industry = document.getElementById('industry').value;
+  const freq = document.getElementById('frequency').value;
+  const email = document.getElementById('emailAddr').value.trim();
+  if(!first||!last||!title||!industry){
+    document.getElementById('intakeError').style.display='block';
+    return;
+  }
+  document.getElementById('intakeError').style.display='none';
+  userData = {first,last,company,title,industry,freq,email};
+  document.getElementById('intakeScreen').classList.remove('active');
+  document.getElementById('questionScreen').classList.add('active');
+  renderQuestion(0);
+}
+
+function renderQuestion(idx){
+  const q = QUESTIONS[idx];
+  document.getElementById('dimBadge').textContent = 'Dimension '+q.dim+' — '+q.dimName;
+  document.getElementById('qNumber').textContent = 'Q'+(idx+1)+' of 24';
+  document.getElementById('questionText').textContent = q.text;
+  document.getElementById('questionSub').textContent = q.sub;
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+  q.options.forEach((opt,i)=>{
+    const card = document.createElement('div');
+    card.className = 'option-card'+(answers[idx]===i?' selected':'');
+    card.innerHTML = `<div class="option-indicator"></div><div class="option-content"><div class="option-label">${opt.label}</div><div class="option-desc">${opt.desc}</div></div>`;
+    card.onclick = ()=>selectOption(idx,i);
+    grid.appendChild(card);
+  });
+  document.getElementById('btnNext').disabled = answers[idx]===null;
+  document.getElementById('btnPrev').style.visibility = idx===0?'hidden':'visible';
+  updateProgress(idx);
+}
+
+function selectOption(qIdx,optIdx){
+  answers[qIdx] = optIdx;
+  document.querySelectorAll('.option-card').forEach((c,i)=>{
+    c.classList.toggle('selected',i===optIdx);
+  });
+  document.getElementById('btnNext').disabled = false;
+}
+
+function nextQuestion(){
+  if(answers[currentQ]===null)return;
+  currentQ++;
+  if(currentQ>=QUESTIONS.length){submitAssessment();return;}
+  renderQuestion(currentQ);
+}
+
+function prevQuestion(){
+  if(currentQ>0){currentQ--;renderQuestion(currentQ);}
+}
+
+function updateProgress(idx){
+  const answered = answers.filter(a=>a!==null).length;
+  const pct = Math.round((answered/24)*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressCount').textContent=answered+' of 24';
+}
+
+function calcScores(){
+  const dimScores = [0,0,0,0,0,0];
+  const dimCounts = [0,0,0,0,0,0];
+  answers.forEach((ans,i)=>{
+    if(ans===null)return;
+    const q = QUESTIONS[i];
+    const score = q.options[ans].score;
+    dimScores[q.dim-1] += score;
+    dimCounts[q.dim-1] += 1;
+  });
+  const dimPcts = dimScores.map((s,i)=>dimCounts[i]?Math.round((s/(dimCounts[i]*4))*100):0);
+  const overall = Math.round(dimPcts.reduce((a,b)=>a+b,0)/6);
+  return {dimPcts, overall};
+}
+
+async function submitAssessment(){
+  document.getElementById('questionScreen').classList.remove('active');
+  document.getElementById('progressWrap').classList.remove('visible');
+  document.getElementById('loadingScreen').classList.add('active');
+
+  const {dimPcts, overall} = calcScores();
+  const archetype = ARCHETYPES.find(a=>overall>=a.min&&overall<=a.max)||ARCHETYPES[0];
+
+  const dimSummary = DIM_NAMES.map((n,i)=>`${n}: ${dimPcts[i]}%`).join(', ');
+  const weakDim = DIM_NAMES[dimPcts.indexOf(Math.min(...dimPcts))];
+  const strongDim = DIM_NAMES[dimPcts.indexOf(Math.max(...dimPcts))];
+
+  const answersSummary = answers.map((ans,i)=>{
+    if(ans===null)return null;
+    const q = QUESTIONS[i];
+    return `[${q.dimName}] Q: "${q.text}" → A: "${q.options[ans].label}" (${q.options[ans].score}/4)`;
+  }).filter(Boolean).join('\n');
+
+  const prompt = `You are Henry Hays — Founding Director of the LSU Applied Intelligence Lab and principal of Henry Hays Consulting. You are writing a Personal AI Readiness Assessment debrief for ${userData.first} ${userData.last}, a ${userData.title} in the ${userData.industry} industry.
+
+Overall score: ${overall}/100
+Readiness stage: ${archetype.stage}
+Archetype: ${archetype.name} — "${archetype.tagline}"
+Dimension scores: ${dimSummary}
+Strongest dimension: ${strongDim} (${Math.max(...dimPcts)}%)
+Weakest dimension: ${weakDim} (${Math.min(...dimPcts)}%)
+Usage frequency: ${userData.freq||'Not specified'}
+
+Their question-by-question answers:
+${answersSummary}
+
+Write the following in Henry Hays' EXACT voice — no exceptions:
+- Henry opens with a scene or moment (not a thesis statement)
+- Plain language — no jargon without a bridge
+- Short punchy sentences for emphasis
+- Warm but direct — never fluffy, never generic
+- The Gulf South operator worldview: practical, grounded, business-reality-focused
+- Respects the reader's intelligence
+- Never uses: "leverage" (as a verb), "synergy", "cutting-edge", "exciting", "transformational" without mechanism
+
+Return ONLY valid JSON with exactly this structure:
+{
+  "summaryParagraph": "3-4 sentences in Henry's voice. Opens with a moment or scene that mirrors where this person actually is. Honest read on their stage. Ends with a single specific observation about what's holding them back or what's about to unlock.",
+  "nextSteps": [
+    {"title": "Short action title", "body": "2-3 sentences in Henry's voice. Specific, behavioral, immediately actionable. Not 'explore AI' — something this person can do this week."},
+    {"title": "Short action title", "body": "2-3 sentences. Addresses their weakest dimension specifically."},
+    {"title": "Short action title", "body": "2-3 sentences. The 30-day move that separates the curious from the committed."}
+  ],
+  "closingQuote": "One sentence. No attribution needed. The idea that makes the assessment portable — the thing ${userData.first} will remember in 6 months. In Henry's voice: crisp, slightly provocative, quotable."
+}
+
+Return ONLY the JSON object. No markdown, no preamble, no explanation.`;
+
+  try{
+    const resp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data = await resp.json();
+    const raw = data.content[0].text.replace(/```json|```/g,'').trim();
+    const parsed = JSON.parse(raw);
+    resultData = {overall, archetype, dimPcts, strongDim, weakDim, parsed};
+    showResults();
+  }catch(e){
+    const fallback = {
+      summaryParagraph: `${userData.first}, you're at a stage most people spend years stuck in — not because they're not smart, but because no one told them what the next move looked like. You've got the instincts. Now it's time to build the system.`,
+      nextSteps:[
+        {title:"Build one repeatable prompt",body:"Pick the task you do most often in your work. Write a prompt template for it this week. Save it. Run it five times. The habit of systematizing your prompts is what separates users from practitioners."},
+        {title:"Add a verification step",body:"Every time AI produces a fact, statistic, or specific claim — check it before it goes anywhere. One near-miss will make this feel worth it. Don't wait for the near-miss."},
+        {title:"Make your AI use visible",body:"Tell one colleague something useful you've done with AI this week. Being the person who shares builds influence faster than being the person who hoards."}
+      ],
+      closingQuote:"The tool isn't the gap. The habit is."
+    };
+    resultData = {overall, archetype, dimPcts, strongDim, weakDim, parsed:fallback};
+    showResults();
+  }
+}
+
+function showResults(){
+  document.getElementById('loadingScreen').classList.remove('active');
+  document.getElementById('resultScreen').classList.add('active');
+  const {overall,archetype,dimPcts,strongDim,weakDim,parsed} = resultData;
+
+  document.getElementById('resultName').textContent = userData.first+' '+userData.last;
+  document.getElementById('resultArchetype').textContent = archetype.name+' — "'+archetype.tagline+'"';
+  document.getElementById('resultScore').innerHTML = overall+'<span>/ 100</span>';
+  document.getElementById('resultStage').textContent = archetype.stage;
+  document.getElementById('resultStrong').textContent = strongDim;
+  document.getElementById('resultSummary').textContent = parsed.summaryParagraph;
+
+  const barsContainer = document.getElementById('dimBarsContainer');
+  barsContainer.innerHTML = '';
+  DIM_NAMES.forEach((name,i)=>{
+    const row = document.createElement('div');
+    row.className = 'dim-row';
+    const isHigh = dimPcts[i]>=75;
+    row.innerHTML = `<div class="dim-row-label">${name}</div><div class="dim-track"><div class="dim-fill${isHigh?' high':''}" style="width:0%" data-target="${dimPcts[i]}"></div></div><div class="dim-score-label">${dimPcts[i]}%</div>`;
+    barsContainer.appendChild(row);
+  });
+
+  setTimeout(()=>{
+    document.querySelectorAll('.dim-fill').forEach(el=>{
+      el.style.width = el.getAttribute('data-target')+'%';
+    });
+  },200);
+
+  const stepsContainer = document.getElementById('stepsContainer');
+  stepsContainer.innerHTML = '';
+  parsed.nextSteps.forEach((step,i)=>{
+    const item = document.createElement('div');
+    item.className = 'step-item';
+    item.innerHTML = `<div class="step-num">${i+1}</div><div class="step-content"><div class="step-title">${step.title}</div><div class="step-body">${step.body}</div></div>`;
+    stepsContainer.appendChild(item);
+  });
+
+  document.getElementById('closingQuote').textContent = parsed.closingQuote;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
